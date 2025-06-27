@@ -43,10 +43,12 @@ const Dashboard = () => {
               <Button variant="ghost" size="sm">
                 <ShoppingCart className="w-4 h-4 mr-2" />
               </Button>
-              <Button variant="ghost" size="sm" onClick={handleLogout}>
-                <LogOut className="w-4 h-4 mr-2" />
-                登入
-              </Button>
+              <Link to="/login">
+                <Button variant="ghost" size="sm">
+                  <LogOut className="w-4 h-4 mr-2" />
+                  登入
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

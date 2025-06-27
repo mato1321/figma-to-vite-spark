@@ -12,7 +12,7 @@ const NutritionSurvey = () => {
           <div className="flex items-center justify-between mb-4">
             <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              返回儀表板
+              返回頁面
             </Link>
             <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
               <ClipboardList className="w-6 h-6 text-white" />
