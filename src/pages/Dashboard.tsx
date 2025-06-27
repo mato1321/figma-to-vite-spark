@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,8 @@ import {
   User,
   ShoppingCart,
   Stethoscope,
-  Pill
+  Pill,
+  Target
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -22,12 +22,18 @@ const Dashboard = () => {
 
   const features = [
     {
-      id: 1,
-      title: "症狀症狀 → 推薦藥物",
-      description: "根據症狀智慧推薦適合的藥物",
-      icon: Stethoscope,
-      color: "bg-green-500",
+      title: "智慧推薦藥物",
+      description: "根據症狀推薦適合的藥物",
+      icon: Pill,
+      color: "bg-blue-500",
       link: "/symptoms"
+    },
+    {
+      title: "營養目標",
+      description: "個人化營養建議問卷",
+      icon: Target,
+      color: "bg-green-500",
+      link: "/nutrition"
     },
     {
       id: 2,
