@@ -1,112 +1,50 @@
-import { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Search, 
-  CreditCard, 
-  MessageCircle, 
-  Bot, 
-  Users, 
-  Star,
-  LogOut,
-  User,
-  ShoppingCart,
-  Stethoscope,
+  CheckCircle,
+  Brain,
   Pill,
-  Target
+  ShoppingCart,
+  Sparkles,
+  Users,
+  Shield,
+  User,
+  LogOut,
+  Star
 } from "lucide-react";
 
 const Dashboard = () => {
-  const [userName] = useState("使用者"); // 這裡之後可以從認證系統取得
-
-  const features = [
-    {
-      title: "智慧推薦藥物",
-      description: "根據症狀推薦適合的藥物",
-      icon: Pill,
-      color: "bg-blue-500",
-      link: "/symptoms"
-    },
-    {
-      title: "營養目標",
-      description: "個人化營養建議問卷",
-      icon: Target,
-      color: "bg-green-500",
-      link: "/nutrition"
-    },
-    {
-      id: 2,
-      title: "結帳系統（支援店到店刷卡）",
-      description: "便利的付款方式，支援多種取貨選項",
-      icon: CreditCard,
-      color: "bg-blue-500",
-      link: "/checkout"
-    },
-    {
-      id: 3,
-      title: "客服系統（有真人 + GPT 協助）",
-      description: "24小時客服支援，真人與AI結合",
-      icon: MessageCircle,
-      color: "bg-purple-500",
-      link: "/customer-service"
-    },
-    {
-      id: 4,
-      title: "LINE Bot 領藥提醒",
-      description: "透過LINE提醒用藥時間",
-      icon: Bot,
-      color: "bg-green-600",
-      link: "/line-bot"
-    },
-    {
-      id: 5,
-      title: "會員系統（含藥物評論）",
-      description: "管理個人資料及藥品評論",
-      icon: Users,
-      color: "bg-orange-500",
-      link: "/member"
-    },
-    {
-      id: 6,
-      title: "藥品評論平台",
-      description: "查看藥品評價與使用心得",
-      icon: Star,
-      color: "bg-yellow-500",
-      link: "/reviews"
-    }
-  ];
-
   const handleLogout = () => {
-    // 這裡之後可以加入登出邏輯
     console.log("登出");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200">
+    <div className="min-h-screen bg-white">
       {/* 頂部導航 */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center mr-3">
-                <Pill className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white font-bold text-sm">H</span>
               </div>
-              <h1 className="text-xl font-bold text-gray-800">智慧藥局系統</h1>
+              <h1 className="text-xl font-bold text-gray-800">Healixir</h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-600">歡迎，{userName}</span>
+            <div className="flex items-center space-x-6">
+              <Link to="/" className="text-gray-600 hover:text-blue-600">首頁</Link>
               <Button variant="ghost" size="sm">
                 <User className="w-4 h-4 mr-2" />
                 個人資料
               </Button>
+              <Link to="/nutrition" className="text-blue-600 hover:text-blue-800 font-medium">免費評估</Link>
               <Button variant="ghost" size="sm">
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                購物車
               </Button>
-              <Button variant="outline" size="sm" onClick={handleLogout}>
+              <Button variant="ghost" size="sm" onClick={handleLogout}>
                 <LogOut className="w-4 h-4 mr-2" />
-                登出
+                登入
               </Button>
             </div>
           </div>
@@ -114,72 +52,220 @@ const Dashboard = () => {
       </header>
 
       {/* 主要內容 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* 歡迎區塊 */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">歡迎使用智慧藥局系統</h2>
-          <p className="text-gray-600">選擇您需要的功能，我們提供完整的藥局服務體驗</p>
-        </div>
+      <main>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-500 to-blue-600 text-white py-20">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              為你的健康量身推薦
+              <br />
+              保健食品
+            </h1>
+            <p className="text-xl mb-8 opacity-90">
+              只需 3 分鐘，完成健康問卷，獲得專屬營養建議
+            </p>
+            <Link to="/nutrition">
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-full">
+                <Star className="w-5 h-5 mr-2" fill="currentColor" />
+                立即免費評估 →
+              </Button>
+            </Link>
+          </div>
+        </section>
 
-        {/* 功能卡片網格 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
-            <Link key={feature.id} to={feature.link}>
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer border-0 shadow-md">
+        {/* 四步驟流程 */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+              簡單四步驟，找到最適合的保健方案
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-12 h-12 ${feature.color} rounded-lg flex items-center justify-center`}>
-                      <feature.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-lg font-semibold text-gray-800 leading-tight">
-                        {feature.title}
-                      </CardTitle>
-                    </div>
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-8 h-8 text-white" />
                   </div>
+                  <CardTitle className="text-lg">填寫健康問卷</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <CardDescription className="text-gray-600 text-sm leading-relaxed">
-                    {feature.description}
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    3分鐘快速問卷，了解您的健康狀況
                   </CardDescription>
-                  <div className="mt-4">
-                    <Button variant="outline" size="sm" className="w-full">
-                      開始使用
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
-            </Link>
-          ))}
-        </div>
 
-        {/* 快速統計 */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-2xl font-bold text-blue-600 mb-2">150+</div>
-              <div className="text-sm text-gray-600">可用藥品</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-2xl font-bold text-green-600 mb-2">24/7</div>
-              <div className="text-sm text-gray-600">客服服務</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-2xl font-bold text-purple-600 mb-2">1000+</div>
-              <div className="text-sm text-gray-600">滿意客戶</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6 text-center">
-              <div className="text-2xl font-bold text-orange-600 mb-2">98%</div>
-              <div className="text-sm text-gray-600">推薦準確率</div>
-            </CardContent>
-          </Card>
-        </div>
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">AI 分析生活狀況</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    智能分析您的身體與生活習慣
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Pill className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">推薦專屬保健食品</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    獲得個人化的營養補充建議
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <ShoppingCart className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-lg">線上選購或藥局諮詢</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    方便購買或至合作藥局專業諮詢
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* 為什麼選擇我們 */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+              為什麼選擇我們的健康評估？
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">AI 精準分析</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    運用先進人工智慧技術，精準分析您的健康需求
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">與實體藥局合作</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    與專業藥師合作，提供最可靠的健康建議
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader className="pb-4">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl">快速且隱私保護</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    快速完成評估，嚴格保護您的個人隱私資料
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* 用戶真實回饋 */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+              用戶真實回饋
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-lg">😊</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium">李小姐</h4>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 italic">
+                    "問卷很簡單，推薦的保健食品真的很適合我的需求！"
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-lg">🤔</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium">陳先生</h4>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 italic">
+                    "3分鐘就完成評估，獲得了很實用的營養建議。"
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-lg">😄</span>
+                    </div>
+                    <div>
+                      <h4 className="font-medium">王太太</h4>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 italic">
+                    "AI分析很準確，藥師的專業建議讓我很放心。"
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-blue-500 to-blue-600 text-white py-20">
+          <div className="max-w-4xl mx-auto text-center px-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              開始您的健康之旅
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              立即進行免費評估，讓 AI 為您推薦最適合的保健方案
+            </p>
+            <Link to="/nutrition">
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-full">
+                <Star className="w-5 h-5 mr-2" fill="currentColor" />
+                立即免費評估 →
+              </Button>
+            </Link>
+          </div>
+        </section>
       </main>
     </div>
   );
