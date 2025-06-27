@@ -13,6 +13,14 @@ import ContactUs from "./pages/ContactUs";
 import Dashboard from "./pages/Dashboard";
 import Symptoms from "./pages/Symptoms";
 import NotFound from "./pages/NotFound";
+import NutritionSurvey from "./pages/NutritionSurvey";
+import NutritionResult from "./pages/nutrition/NutritionResult";
+import Question1 from "./pages/nutrition/Question1";
+import Question2 from "./pages/nutrition/Question2";
+import Question3 from "./pages/nutrition/Question3";
+import Question4 from "./pages/nutrition/Question4";
+import Question5 from "./pages/nutrition/Question5";
+import Question48 from "./pages/nutrition/Question48";
 
 const queryClient = new QueryClient();
 
