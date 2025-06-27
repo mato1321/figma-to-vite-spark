@@ -15,8 +15,8 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Login attempt:", { email, password });
-    // 模擬登入成功，跳轉到儀表板
-    navigate("/dashboard");
+    // 修復：導航到根路徑，也就是Dashboard
+    navigate("/");
   };
 
   return (

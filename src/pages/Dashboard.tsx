@@ -14,6 +14,7 @@ import {
   LogOut,
   Star
 } from "lucide-react";
+import ChatButton from "@/components/ChatButton";
 
 const Dashboard = () => {
   const handleLogout = () => {
@@ -267,6 +268,9 @@ const Dashboard = () => {
           </div>
         </section>
       </main>
+
+      {/* 聊天按鈕 */}
+      <ChatButton />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const NutritionSurvey = () => {
       <Card className="w-full max-w-2xl">
         <CardHeader className="text-center">
           <div className="flex items-center justify-between mb-4">
-            <Link to="/dashboard" className="inline-flex items-center text-blue-600 hover:text-blue-800">
+            <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-800">
               <ArrowLeft className="w-4 h-4 mr-2" />
               返回儀表板
             </Link>
