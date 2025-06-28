@@ -20,6 +20,7 @@ import Question3 from "./pages/nutrition/Question3";
 import Question4 from "./pages/nutrition/Question4";
 import Question5 from "./pages/nutrition/Question5";
 import Question48 from "./pages/nutrition/Question48";
+import Cart from "./pages/Cart";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/nutrition/question/5" element={<Question5 />} />
           <Route path="/nutrition/question/48" element={<Question48 />} />
           <Route path="/nutrition/result" element={<NutritionResult />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
