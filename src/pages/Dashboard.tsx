@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -40,9 +39,11 @@ const Dashboard = () => {
                 個人資料
               </Button>
               <Link to="/nutrition" className="text-blue-600 hover:text-blue-800 font-medium">免費評估</Link>
-              <Button variant="ghost" size="sm">
-                <ShoppingCart className="w-4 h-4 mr-2" />
-              </Button>
+              <Link to="/cart">
+                <Button variant="ghost" size="sm">
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                </Button>
+              </Link>
               <Link to="/login">
                 <Button variant="ghost" size="sm">
                   <LogOut className="w-4 h-4 mr-2" />
