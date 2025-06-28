@@ -28,10 +28,10 @@ const NutritionResult = () => {
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                 查看營養建議報告
               </Button>
-              <Link to="/dashboard">
+              <Link to="/">
                 <Button variant="outline" className="w-full">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  返回儀表板
+                  返回主頁
                 </Button>
               </Link>
             </div>

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -63,6 +62,7 @@ import Question46 from "./pages/nutrition/Question46";
 import Question47 from "./pages/nutrition/Question47";
 import Question48 from "./pages/nutrition/Question48";
 import Cart from "./pages/Cart";
+import Member from "./pages/Member";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +80,7 @@ const App = () => (
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/symptoms" element={<Symptoms />} />
+          <Route path="/member" element={<Member />} />
           <Route path="/nutrition" element={<NutritionSurvey />} />
           <Route path="/nutrition/question/1" element={<Question1 />} />
           <Route path="/nutrition/question/2" element={<Question2 />} />

@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,10 +35,12 @@ const Dashboard = () => {
             </div>
             <div className="flex items-center space-x-6">
               <Link to="/" className="text-gray-600 hover:text-blue-600">首頁</Link>
-              <Button variant="ghost" size="sm">
-                <User className="w-4 h-4 mr-2" />
-                個人資料
-              </Button>
+              <Link to="/member">
+                <Button variant="ghost" size="sm">
+                  <User className="w-4 h-4 mr-2" />
+                  會員
+                </Button>
+              </Link>
               <Link to="/nutrition" className="text-blue-600 hover:text-blue-800 font-medium">免費評估</Link>
               <Link to="/cart">
                 <Button variant="ghost" size="sm">
@@ -69,8 +72,8 @@ const Dashboard = () => {
               只需 3 分鐘，完成健康問卷，獲得專屬營養建議
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-full">
-                <Star className="w-5 h-5 mr-2" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-4 text-xl font-medium rounded-full text-lg">
+                <Star className="w-6 h-6 mr-3" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
@@ -263,8 +266,8 @@ const Dashboard = () => {
               立即進行免費評估，讓 AI 為您推薦最適合的保健方案
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-full">
-                <Star className="w-5 h-5 mr-2" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-4 text-xl font-medium rounded-full">
+                <Star className="w-6 h-6 mr-3" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
