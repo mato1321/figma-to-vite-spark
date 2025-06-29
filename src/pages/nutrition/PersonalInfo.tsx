@@ -6,8 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, User } from "lucide-react";
+import { ArrowLeft, ArrowRight, User } from "lucide-react";
 
 const PersonalInfo = () => {
   const navigate = useNavigate();
@@ -18,18 +17,13 @@ const PersonalInfo = () => {
     birthDay: "",
     height: "",
     weight: "",
-    occupation: ""
+    occupation: "學生"
   });
-
-  const professions = [
-    "學生", "上班族", "工程師", "教師", "醫護人員", "服務業", "製造業", 
-    "金融業", "銷售", "自由業", "家庭主婦/主夫", "退休", "其他"
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight && formData.occupation) {
-      navigate("/nutrition/health-goals");
+    if (formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight) {
+      navigate("/nutrition/start");
     }
   };
 
@@ -51,12 +45,12 @@ const PersonalInfo = () => {
     return null;
   };
 
-  const isFormValid = formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight && formData.occupation;
+  const isFormValid = formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight;
   const age = calculateAge();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-3xl">
         <div className="text-center mb-6">
           <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <User className="w-10 h-10 text-white" />
@@ -74,7 +68,7 @@ const PersonalInfo = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* 性別 */}
               <div className="space-y-4">
-                <Label className="text-lg font-semibold text-gray-700 block text-center">生理性別</Label>
+                <Label className="text-lg font-semibold text-gray-700">生理性別</Label>
                 <RadioGroup 
                   value={formData.gender} 
                   onValueChange={(value) => handleInputChange("gender", value)}
@@ -93,8 +87,8 @@ const PersonalInfo = () => {
 
               {/* 出生年月日 */}
               <div className="space-y-4">
-                <Label className="text-lg font-semibold text-gray-700 block text-center">出生年月日</Label>
-                <div className="flex justify-center items-center space-x-4">
+                <Label className="text-lg font-semibold text-gray-700">出生年月日</Label>
+                <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center space-x-2">
                     <Input 
                       type="number" 
@@ -142,7 +136,7 @@ const PersonalInfo = () => {
               {/* 身高體重 */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <Label className="text-lg font-semibold text-gray-700 block text-center">身高</Label>
+                  <Label className="text-lg font-semibold text-gray-700">身高</Label>
                   <div className="flex justify-center items-center space-x-3">
                     <Input 
                       type="number" 
@@ -158,7 +152,7 @@ const PersonalInfo = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <Label className="text-lg font-semibold text-gray-700 block text-center">體重</Label>
+                  <Label className="text-lg font-semibold text-gray-700">體重</Label>
                   <div className="flex justify-center items-center space-x-3">
                     <Input 
                       type="number" 
@@ -176,20 +170,15 @@ const PersonalInfo = () => {
 
               {/* 職業 */}
               <div className="space-y-4">
-                <Label className="text-lg font-semibold text-gray-700 block text-center">職業</Label>
+                <Label className="text-lg font-semibold text-gray-700">職業</Label>
                 <div className="flex justify-center">
-                  <Select value={formData.occupation} onValueChange={(value) => handleInputChange("occupation", value)}>
-                    <SelectTrigger className="w-48 text-center">
-                      <SelectValue placeholder="請選擇職業" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {professions.map((profession) => (
-                        <SelectItem key={profession} value={profession}>
-                          {profession}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="px-8 py-3 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
+                  >
+                    學生
+                  </Button>
                 </div>
               </div>
 

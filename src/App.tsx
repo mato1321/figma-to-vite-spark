@@ -67,9 +67,6 @@ import PersonalInfo from "./pages/nutrition/PersonalInfo";
 import QuestionnaireStart from "./pages/nutrition/QuestionnaireStart";
 import AnalysisResult from "./pages/nutrition/AnalysisResult";
 import RecommendationReport from "./pages/nutrition/RecommendationReport";
-import HealthGoals from "./pages/nutrition/HealthGoals";
-import AssessmentDetail from "./pages/nutrition/AssessmentDetail";
-import OrderDetail from "./pages/nutrition/OrderDetail";
 
 const queryClient = new QueryClient();
 
@@ -90,7 +87,6 @@ const App = () => (
           <Route path="/member" element={<Member />} />
           <Route path="/nutrition" element={<NutritionSurvey />} />
           <Route path="/nutrition/personal-info" element={<PersonalInfo />} />
-          <Route path="/nutrition/health-goals" element={<HealthGoals />} />
           <Route path="/nutrition/start" element={<QuestionnaireStart />} />
           <Route path="/nutrition/question/1" element={<Question1 />} />
           <Route path="/nutrition/question/2" element={<Question2 />} />
@@ -140,8 +136,6 @@ const App = () => (
           <Route path="/nutrition/question/46" element={<Question46 />} />
           <Route path="/nutrition/question/47" element={<Question47 />} />
           <Route path="/nutrition/question/48" element={<Question48 />} />
-          <Route path="/nutrition/assessment/:id" element={<AssessmentDetail />} />
-          <Route path="/nutrition/order/:id" element={<OrderDetail />} />
           <Route path="/nutrition/analysis" element={<AnalysisResult />} />
           <Route path="/nutrition/recommendations" element={<RecommendationReport />} />
           <Route path="/nutrition/result" element={<NutritionResult />} />
