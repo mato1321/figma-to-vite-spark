@@ -50,9 +50,9 @@ const Member = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
       {/* 頂部導航 */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-white/80 backdrop-blur-sm shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -71,13 +71,13 @@ const Member = () => {
 
       {/* 主要內容 */}
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">會員中心</h1>
-          <p className="text-gray-600">管理您的健康評估紀錄和訂單資訊</p>
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-blue-800 mb-2">會員中心</h1>
+          <p className="text-blue-600">管理您的健康評估紀錄和訂單資訊</p>
         </div>
 
         <Tabs defaultValue="profile" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8 bg-white/80 backdrop-blur-sm">
             <TabsTrigger value="profile" className="flex items-center">
               <User className="w-4 h-4 mr-2" />
               個人資料
@@ -93,9 +93,9 @@ const Member = () => {
           </TabsList>
 
           <TabsContent value="profile" className="space-y-6">
-            <Card>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-blue-800">
                   <User className="w-5 h-5 mr-2" />
                   基本資料
                 </CardTitle>
@@ -103,20 +103,20 @@ const Member = () => {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">姓名</label>
-                    <div className="p-2 bg-gray-50 rounded-md">張小華</div>
+                    <label className="block text-sm font-medium text-blue-700 mb-1">姓名</label>
+                    <div className="p-2 bg-blue-50 rounded-md">張小華</div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">電子郵件</label>
-                    <div className="p-2 bg-gray-50 rounded-md">zhang@example.com</div>
+                    <label className="block text-sm font-medium text-blue-700 mb-1">電子郵件</label>
+                    <div className="p-2 bg-blue-50 rounded-md">zhang@example.com</div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">電話號碼</label>
-                    <div className="p-2 bg-gray-50 rounded-md">0912-345-678</div>
+                    <label className="block text-sm font-medium text-blue-700 mb-1">電話號碼</label>
+                    <div className="p-2 bg-blue-50 rounded-md">0912-345-678</div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">會員等級</label>
-                    <div className="p-2 bg-blue-50 text-blue-700 rounded-md font-medium">一般會員</div>
+                    <label className="block text-sm font-medium text-blue-700 mb-1">會員等級</label>
+                    <div className="p-2 bg-blue-100 text-blue-800 rounded-md font-medium">一般會員</div>
                   </div>
                 </div>
                 <Button className="bg-blue-600 hover:bg-blue-700">編輯資料</Button>
@@ -125,39 +125,41 @@ const Member = () => {
           </TabsContent>
 
           <TabsContent value="assessments" className="space-y-6">
-            <Card>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-blue-800">
                   <FileText className="w-5 h-5 mr-2" />
                   健康評估紀錄
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-blue-600">
                   查看您的健康評估歷史紀錄和建議報告
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {mockAssessments.map((assessment) => (
-                    <Card key={assessment.id} className="border border-gray-200">
+                    <Card key={assessment.id} className="border-2 border-blue-200 bg-blue-50/50">
                       <CardContent className="p-4">
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
                             <div className="flex items-center mb-2">
-                              <Calendar className="w-4 h-4 mr-2 text-gray-500" />
-                              <span className="text-sm text-gray-500">{assessment.date}</span>
+                              <Calendar className="w-4 h-4 mr-2 text-blue-500" />
+                              <span className="text-sm text-blue-600">{assessment.date}</span>
                               <span className="ml-4 px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
                                 {assessment.status}
                               </span>
                             </div>
-                            <h3 className="font-medium text-gray-800 mb-1">{assessment.type}</h3>
-                            <p className="text-sm text-gray-600">{assessment.result}</p>
+                            <h3 className="font-medium text-blue-800 mb-1">{assessment.type}</h3>
+                            <p className="text-sm text-blue-600">{assessment.result}</p>
                           </div>
                           <div className="flex space-x-2 ml-4">
-                            <Button variant="outline" size="sm">
-                              <Eye className="w-4 h-4 mr-1" />
-                              查看
-                            </Button>
-                            <Button variant="outline" size="sm">
+                            <Link to={`/nutrition/assessment/${assessment.id}`}>
+                              <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-100">
+                                <Eye className="w-4 h-4 mr-1" />
+                                查看
+                              </Button>
+                            </Link>
+                            <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-100">
                               <Download className="w-4 h-4 mr-1" />
                               下載
                             </Button>
@@ -180,25 +182,25 @@ const Member = () => {
           </TabsContent>
 
           <TabsContent value="orders" className="space-y-6">
-            <Card>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-blue-800">
                   <Package className="w-5 h-5 mr-2" />
                   訂單資訊
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-blue-600">
                   查看您的購買紀錄和訂單狀態
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {mockOrders.map((order) => (
-                    <Card key={order.id} className="border border-gray-200">
+                    <Card key={order.id} className="border-2 border-blue-200 bg-blue-50/50">
                       <CardContent className="p-4">
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
                             <div className="flex items-center mb-2">
-                              <span className="font-medium text-gray-800">訂單號碼: {order.id}</span>
+                              <span className="font-medium text-blue-800">訂單號碼: {order.id}</span>
                               <span className={`ml-4 px-2 py-1 text-xs rounded-full ${
                                 order.status === '已完成' 
                                   ? 'bg-green-100 text-green-800' 
@@ -208,24 +210,26 @@ const Member = () => {
                               </span>
                             </div>
                             <div className="flex items-center mb-2">
-                              <Calendar className="w-4 h-4 mr-2 text-gray-500" />
-                              <span className="text-sm text-gray-500">{order.date}</span>
+                              <Calendar className="w-4 h-4 mr-2 text-blue-500" />
+                              <span className="text-sm text-blue-600">{order.date}</span>
                             </div>
                             <div className="mb-2">
-                              <p className="text-sm text-gray-600">商品：</p>
-                              <ul className="text-sm text-gray-700 ml-4">
+                              <p className="text-sm text-blue-600">商品：</p>
+                              <ul className="text-sm text-blue-700 ml-4">
                                 {order.items.map((item, index) => (
                                   <li key={index}>• {item}</li>
                                 ))}
                               </ul>
                             </div>
-                            <p className="font-medium text-gray-800">總金額：{order.total}</p>
+                            <p className="font-medium text-blue-800">總金額：{order.total}</p>
                           </div>
                           <div className="flex space-x-2 ml-4">
-                            <Button variant="outline" size="sm">
-                              <Eye className="w-4 h-4 mr-1" />
-                              詳情
-                            </Button>
+                            <Link to={`/nutrition/order/${order.id}`}>
+                              <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-100">
+                                <Eye className="w-4 h-4 mr-1" />
+                                詳情
+                              </Button>
+                            </Link>
                           </div>
                         </div>
                       </CardContent>
