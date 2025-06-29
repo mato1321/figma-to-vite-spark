@@ -20,7 +20,7 @@ const NutritionSurvey = () => {
           </div>
           <CardTitle className="text-2xl font-bold text-gray-800 mb-2">營養目標問卷</CardTitle>
           <CardDescription className="text-gray-600">
-            請回答以下 48 個問題，系統將為您制定個人化的營養建議
+            請先填寫基本資料，然後回答 48 個問題，系統將為您制定個人化的營養建議
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
@@ -32,9 +32,9 @@ const NutritionSurvey = () => {
               您可以隨時返回修改答案，系統會自動保存您的進度。
             </p>
           </div>
-          <Link to="/nutrition/question/1">
+          <Link to="/nutrition/personal-info">
             <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3">
-              開始問卷
+              開始填寫基本資料
             </Button>
           </Link>
         </CardContent>
