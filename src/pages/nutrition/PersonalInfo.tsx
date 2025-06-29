@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, ArrowRight, User } from "lucide-react";
 
 const PersonalInfo = () => {
@@ -17,12 +18,18 @@ const PersonalInfo = () => {
     birthDay: "",
     height: "",
     weight: "",
-    occupation: "學生"
+    occupation: ""
   });
+
+  const professions = [
+    "學生", "工程師", "醫師", "護理師", "教師", "律師", "會計師", "設計師",
+    "銷售人員", "行政人員", "經理", "主管", "服務業", "製造業", "金融業",
+    "媒體業", "藝術工作者", "自由業", "退休", "家管", "其他"
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight) {
+    if (formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight && formData.occupation) {
       navigate("/nutrition/start");
     }
   };
@@ -45,7 +52,7 @@ const PersonalInfo = () => {
     return null;
   };
 
-  const isFormValid = formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight;
+  const isFormValid = formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight && formData.occupation;
   const age = calculateAge();
 
   return (
@@ -67,7 +74,7 @@ const PersonalInfo = () => {
           <CardContent className="p-8">
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* 性別 */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-center">
                 <Label className="text-lg font-semibold text-gray-700">生理性別</Label>
                 <RadioGroup 
                   value={formData.gender} 
@@ -86,9 +93,9 @@ const PersonalInfo = () => {
               </div>
 
               {/* 出生年月日 */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-center">
                 <Label className="text-lg font-semibold text-gray-700">出生年月日</Label>
-                <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <div className="flex justify-center items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     <Input 
                       type="number" 
@@ -135,7 +142,7 @@ const PersonalInfo = () => {
 
               {/* 身高體重 */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
+                <div className="space-y-4 text-center">
                   <Label className="text-lg font-semibold text-gray-700">身高</Label>
                   <div className="flex justify-center items-center space-x-3">
                     <Input 
@@ -151,7 +158,7 @@ const PersonalInfo = () => {
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 text-center">
                   <Label className="text-lg font-semibold text-gray-700">體重</Label>
                   <div className="flex justify-center items-center space-x-3">
                     <Input 
@@ -169,16 +176,21 @@ const PersonalInfo = () => {
               </div>
 
               {/* 職業 */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-center">
                 <Label className="text-lg font-semibold text-gray-700">職業</Label>
                 <div className="flex justify-center">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="px-8 py-3 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
-                  >
-                    學生
-                  </Button>
+                  <Select value={formData.occupation} onValueChange={(value) => handleInputChange("occupation", value)}>
+                    <SelectTrigger className="w-48 text-center">
+                      <SelectValue placeholder="請選擇職業" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {professions.map((profession) => (
+                        <SelectItem key={profession} value={profession}>
+                          {profession}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 

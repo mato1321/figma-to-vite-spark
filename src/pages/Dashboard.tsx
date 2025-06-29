@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,13 +12,21 @@ import {
   Shield,
   User,
   LogOut,
-  Star
+  Star,
+  LogIn
 } from "lucide-react";
 import ChatButton from "@/components/ChatButton";
 import FloatingCartButton from "@/components/FloatingCartButton";
 
 const Dashboard = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   const handleLogout = () => {
+    setIsLoggedIn(false);
     console.log("登出");
   };
 
@@ -42,12 +51,19 @@ const Dashboard = () => {
                 </Button>
               </Link>
               <Link to="/nutrition" className="text-blue-600 hover:text-blue-800 font-medium">免費評估</Link>
-              <Link to="/login">
-                <Button variant="ghost" size="sm">
+              {isLoggedIn ? (
+                <Button variant="ghost" size="sm" onClick={handleLogout}>
                   <LogOut className="w-4 h-4 mr-2" />
-                  登入
+                  登出
                 </Button>
-              </Link>
+              ) : (
+                <Link to="/login">
+                  <Button variant="ghost" size="sm" onClick={handleLogin}>
+                    <LogIn className="w-4 h-4 mr-2" />
+                    登入
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -67,8 +83,8 @@ const Dashboard = () => {
               只需 3 分鐘，完成健康問卷，獲得專屬營養建議
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-20 py-8 text-3xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
-                <Star className="w-10 h-10 mr-6" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-32 py-12 text-4xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-12 h-12 mr-8" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
@@ -235,8 +251,8 @@ const Dashboard = () => {
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-2xl">👵</span>
+                    <div className="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-2xl">👴</span>
                     </div>
                     <div>
                       <h4 className="font-medium">王太太</h4>
@@ -261,8 +277,8 @@ const Dashboard = () => {
               立即進行免費評估，讓 AI 為您推薦最適合的保健方案
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-20 py-8 text-3xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
-                <Star className="w-10 h-10 mr-6" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-32 py-12 text-4xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-12 h-12 mr-8" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>

@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -153,10 +152,12 @@ const Member = () => {
                             <p className="text-sm text-gray-600">{assessment.result}</p>
                           </div>
                           <div className="flex space-x-2 ml-4">
-                            <Button variant="outline" size="sm">
-                              <Eye className="w-4 h-4 mr-1" />
-                              查看
-                            </Button>
+                            <Link to={`/nutrition/assessment/${assessment.id}`}>
+                              <Button variant="outline" size="sm">
+                                <Eye className="w-4 h-4 mr-1" />
+                                查看
+                              </Button>
+                            </Link>
                             <Button variant="outline" size="sm">
                               <Download className="w-4 h-4 mr-1" />
                               下載
@@ -222,10 +223,12 @@ const Member = () => {
                             <p className="font-medium text-gray-800">總金額：{order.total}</p>
                           </div>
                           <div className="flex space-x-2 ml-4">
-                            <Button variant="outline" size="sm">
-                              <Eye className="w-4 h-4 mr-1" />
-                              詳情
-                            </Button>
+                            <Link to={`/nutrition/order/${order.id}`}>
+                              <Button variant="outline" size="sm">
+                                <Eye className="w-4 h-4 mr-1" />
+                                詳情
+                              </Button>
+                            </Link>
                           </div>
                         </div>
                       </CardContent>
