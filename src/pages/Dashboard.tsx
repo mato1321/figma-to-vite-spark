@@ -72,8 +72,8 @@ const Dashboard = () => {
               只需 3 分鐘，完成健康問卷，獲得專屬營養建議
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-4 text-xl font-medium rounded-full text-lg">
-                <Star className="w-6 h-6 mr-3" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-16 py-6 text-2xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-8 h-8 mr-4" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
@@ -208,8 +208,8 @@ const Dashboard = () => {
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-lg">😊</span>
+                    <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-2xl">👩</span>
                     </div>
                     <div>
                       <h4 className="font-medium">李小姐</h4>
@@ -224,8 +224,8 @@ const Dashboard = () => {
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-lg">🤔</span>
+                    <div className="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-2xl">👨</span>
                     </div>
                     <div>
                       <h4 className="font-medium">陳先生</h4>
@@ -240,8 +240,8 @@ const Dashboard = () => {
               <Card className="border-0 shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center mr-3">
-                      <span className="text-lg">😄</span>
+                    <div className="w-12 h-12 bg-pink-200 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-2xl">👵</span>
                     </div>
                     <div>
                       <h4 className="font-medium">王太太</h4>
@@ -266,8 +266,8 @@ const Dashboard = () => {
               立即進行免費評估，讓 AI 為您推薦最適合的保健方案
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-12 py-4 text-xl font-medium rounded-full">
-                <Star className="w-6 h-6 mr-3" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-16 py-6 text-2xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-8 h-8 mr-4" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AnalysisResult = () => {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ const AnalysisResult = () => {
   const analysisData = [
     { category: "飲食", score: 70, color: "bg-green-500" },
     { category: "作息", score: 85, color: "bg-green-500" },
-    { category: "心理", score: 25, color: "bg-green-500" },
-    { category: "體質", score: 58, color: "bg-green-500" },
-    { category: "運動", score: 9, color: "bg-green-500" }
+    { category: "心理", score: 25, color: "bg-red-500" },
+    { category: "體質", score: 58, color: "bg-yellow-500" },
+    { category: "運動", score: 9, color: "bg-red-500" }
   ];
 
   return (
@@ -72,7 +73,7 @@ const AnalysisResult = () => {
                 <p className="text-red-500 font-medium mb-2">59%的同齡人</p>
                 <p className="mb-4">您的身體質量指數為</p>
                 <p className="mb-2">
-                  <span className="font-bold">21.1kg/m2</span>，屬於正常範圍，
+                  <span className="font-bold">21.1kg/m²</span>，屬於正常範圍，
                 </p>
                 <p className="mb-6">
                   <span className="text-red-500">心理和運動</span>方面較為不足!!
@@ -80,7 +81,7 @@ const AnalysisResult = () => {
                 
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <div className="flex items-center space-x-4">
-                    <span className="font-bold text-lg">BMI :21.1</span>
+                    <span className="font-bold text-lg">BMI: 21.1</span>
                     <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
                       正常
                     </span>
@@ -92,13 +93,22 @@ const AnalysisResult = () => {
         </div>
 
         <div className="flex justify-between items-center mt-8">
-          <span className="text-blue-800 font-medium">繼續我們</span>
-          <Button
-            onClick={handleNext}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
-          >
-            <ArrowRight className="w-5 h-5" />
-          </Button>
+          <Link to="/contact">
+            <Button variant="outline" className="flex items-center space-x-2 px-6 py-3">
+              <MessageCircle className="w-5 h-5" />
+              <span>聯絡我們</span>
+            </Button>
+          </Link>
+          
+          <div className="flex items-center space-x-4">
+            <span className="text-blue-800 font-medium">繼續查看建議</span>
+            <Button
+              onClick={handleNext}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

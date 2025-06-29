@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, User } from "lucide-react";
 
 const PersonalInfo = () => {
   const navigate = useNavigate();
@@ -31,56 +31,75 @@ const PersonalInfo = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  const calculateAge = () => {
+    if (formData.birthYear && formData.birthMonth && formData.birthDay) {
+      const today = new Date();
+      const birthDate = new Date(parseInt(formData.birthYear), parseInt(formData.birthMonth) - 1, parseInt(formData.birthDay));
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+    return null;
+  };
+
   const isFormValid = formData.gender && formData.birthYear && formData.birthMonth && formData.birthDay && formData.height && formData.weight;
+  const age = calculateAge();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
-        <div className="text-center mb-4">
-          <h1 className="text-2xl font-bold text-blue-800 mb-2">Healixir</h1>
-          <p className="text-blue-600">基本資訊</p>
+      <div className="w-full max-w-3xl">
+        <div className="text-center mb-6">
+          <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <User className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="text-3xl font-bold text-blue-800 mb-2">Healixir</h1>
+          <p className="text-blue-600 text-lg">開始您的健康評估旅程</p>
         </div>
         
-        <Card className="bg-white/90 backdrop-blur-sm">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-gray-800">基本資訊</CardTitle>
+        <Card className="bg-white/90 backdrop-blur-sm shadow-xl">
+          <CardHeader className="text-center pb-6">
+            <CardTitle className="text-2xl font-bold text-gray-800">填寫基本資訊</CardTitle>
+            <p className="text-gray-600 mt-2">請提供您的基本資料，這將幫助我們為您提供更精準的健康建議</p>
           </CardHeader>
           <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
               {/* 性別 */}
-              <div className="space-y-3">
-                <Label className="text-lg font-medium">生理性別</Label>
+              <div className="space-y-4">
+                <Label className="text-lg font-semibold text-gray-700">生理性別</Label>
                 <RadioGroup 
                   value={formData.gender} 
                   onValueChange={(value) => handleInputChange("gender", value)}
-                  className="flex justify-center space-x-8"
+                  className="flex justify-center space-x-12"
                 >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="男" id="male" />
-                    <Label htmlFor="male">男</Label>
+                  <div className="flex items-center space-x-3 p-4 border-2 border-transparent rounded-lg hover:border-blue-200 transition-colors">
+                    <RadioGroupItem value="男" id="male" className="w-5 h-5" />
+                    <Label htmlFor="male" className="text-base cursor-pointer">男性</Label>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="女" id="female" />
-                    <Label htmlFor="female">女</Label>
+                  <div className="flex items-center space-x-3 p-4 border-2 border-transparent rounded-lg hover:border-blue-200 transition-colors">
+                    <RadioGroupItem value="女" id="female" className="w-5 h-5" />
+                    <Label htmlFor="female" className="text-base cursor-pointer">女性</Label>
                   </div>
                 </RadioGroup>
               </div>
 
               {/* 出生年月日 */}
-              <div className="space-y-3">
-                <Label className="text-lg font-medium">出生年月日</Label>
-                <div className="flex space-x-2 justify-center items-center">
+              <div className="space-y-4">
+                <Label className="text-lg font-semibold text-gray-700">出生年月日</Label>
+                <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
                   <div className="flex items-center space-x-2">
                     <Input 
                       type="number" 
-                      placeholder="2004" 
+                      placeholder="1995" 
                       value={formData.birthYear}
                       onChange={(e) => handleInputChange("birthYear", e.target.value)}
-                      className="w-20 text-center"
-                      min="1900"
+                      className="w-24 text-center text-lg"
+                      min="1920"
                       max="2024"
                     />
-                    <span>年</span>
+                    <span className="text-gray-600">年</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Input 
@@ -88,66 +107,75 @@ const PersonalInfo = () => {
                       placeholder="5" 
                       value={formData.birthMonth}
                       onChange={(e) => handleInputChange("birthMonth", e.target.value)}
-                      className="w-16 text-center"
+                      className="w-20 text-center text-lg"
                       min="1"
                       max="12"
                     />
-                    <span>月</span>
+                    <span className="text-gray-600">月</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Input 
                       type="number" 
-                      placeholder="7" 
+                      placeholder="15" 
                       value={formData.birthDay}
                       onChange={(e) => handleInputChange("birthDay", e.target.value)}
-                      className="w-16 text-center"
+                      className="w-20 text-center text-lg"
                       min="1"
                       max="31"
                     />
-                    <span>日</span>
+                    <span className="text-gray-600">日</span>
                   </div>
-                  <span className="text-gray-400 text-sm ml-4">年齡 21歲</span>
+                  {age && (
+                    <span className="text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">
+                      年齡 {age} 歲
+                    </span>
+                  )}
                 </div>
               </div>
 
-              {/* 身高 */}
-              <div className="space-y-3">
-                <Label className="text-lg font-medium">身高</Label>
-                <div className="flex justify-center items-center space-x-2">
-                  <Input 
-                    type="number" 
-                    placeholder="163" 
-                    value={formData.height}
-                    onChange={(e) => handleInputChange("height", e.target.value)}
-                    className="w-24 text-center"
-                  />
-                  <span>公分</span>
+              {/* 身高體重 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-700">身高</Label>
+                  <div className="flex justify-center items-center space-x-3">
+                    <Input 
+                      type="number" 
+                      placeholder="170" 
+                      value={formData.height}
+                      onChange={(e) => handleInputChange("height", e.target.value)}
+                      className="w-28 text-center text-lg"
+                      min="100"
+                      max="250"
+                    />
+                    <span className="text-gray-600">公分</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* 體重 */}
-              <div className="space-y-3">
-                <Label className="text-lg font-medium">體重</Label>
-                <div className="flex justify-center items-center space-x-2">
-                  <Input 
-                    type="number" 
-                    placeholder="54" 
-                    value={formData.weight}
-                    onChange={(e) => handleInputChange("weight", e.target.value)}
-                    className="w-24 text-center"
-                  />
-                  <span>公斤</span>
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold text-gray-700">體重</Label>
+                  <div className="flex justify-center items-center space-x-3">
+                    <Input 
+                      type="number" 
+                      placeholder="65" 
+                      value={formData.weight}
+                      onChange={(e) => handleInputChange("weight", e.target.value)}
+                      className="w-28 text-center text-lg"
+                      min="30"
+                      max="200"
+                    />
+                    <span className="text-gray-600">公斤</span>
+                  </div>
                 </div>
               </div>
 
               {/* 職業 */}
-              <div className="space-y-3">
-                <Label className="text-lg font-medium">職業</Label>
+              <div className="space-y-4">
+                <Label className="text-lg font-semibold text-gray-700">職業</Label>
                 <div className="flex justify-center">
                   <Button
                     type="button"
                     variant="outline"
-                    className="px-8 py-2 bg-blue-100 border-blue-200 text-blue-700"
+                    className="px-8 py-3 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
                   >
                     學生
                   </Button>
@@ -158,8 +186,9 @@ const PersonalInfo = () => {
                 <Button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white px-8 py-3 rounded-full"
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white px-12 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
                 >
+                  <span className="mr-2">繼續</span>
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </div>
