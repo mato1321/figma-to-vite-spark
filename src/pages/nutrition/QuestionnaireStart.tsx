@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,10 +7,15 @@ import { ArrowLeft, ClipboardList, CheckCircle } from "lucide-react";
 
 const QuestionnaireStart = () => {
   const navigate = useNavigate();
+  const [hasUsedSupplements, setHasUsedSupplements] = useState<string>("");
+  const [currentSupplementCount, setCurrentSupplementCount] = useState<string>("");
+  const [supplementFrequency, setSupplementFrequency] = useState<string>("");
 
   const handleStart = () => {
     navigate("/nutrition/question/1");
   };
+
+  const isFormComplete = hasUsedSupplements && currentSupplementCount && supplementFrequency;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 flex items-center justify-center p-4">
@@ -61,10 +67,18 @@ const QuestionnaireStart = () => {
                     有無吃過保健食品？
                   </div>
                   <div className="flex justify-center space-x-6">
-                    <Button variant="outline" className="px-8 py-3 border-gray-300 hover:bg-blue-50">
+                    <Button 
+                      variant={hasUsedSupplements === "有" ? "default" : "outline"} 
+                      className="px-8 py-3"
+                      onClick={() => setHasUsedSupplements("有")}
+                    >
                       有
                     </Button>
-                    <Button variant="outline" className="px-8 py-3 border-gray-300 hover:bg-blue-50">
+                    <Button 
+                      variant={hasUsedSupplements === "無" ? "default" : "outline"} 
+                      className="px-8 py-3"
+                      onClick={() => setHasUsedSupplements("無")}
+                    >
                       無
                     </Button>
                   </div>
@@ -75,18 +89,16 @@ const QuestionnaireStart = () => {
                     您目前正在服用保健食品？
                   </div>
                   <div className="flex justify-center space-x-4">
-                    <Button variant="outline" className="px-6 py-3 border-gray-300 hover:bg-blue-50">
-                      0
-                    </Button>
-                    <Button variant="outline" className="px-6 py-3 border-gray-300 hover:bg-blue-50">
-                      1-2
-                    </Button>
-                    <Button variant="outline" className="px-6 py-3 border-gray-300 hover:bg-blue-50">
-                      3-5
-                    </Button>
-                    <Button variant="outline" className="px-6 py-3 border-gray-300 hover:bg-blue-50">
-                      5+
-                    </Button>
+                    {["0", "1-2", "3-5", "5+"].map((count) => (
+                      <Button 
+                        key={count}
+                        variant={currentSupplementCount === count ? "default" : "outline"} 
+                        className="px-6 py-3"
+                        onClick={() => setCurrentSupplementCount(count)}
+                      >
+                        {count}
+                      </Button>
+                    ))}
                   </div>
                 </div>
 
@@ -95,18 +107,16 @@ const QuestionnaireStart = () => {
                     您服用保健食品的頻率是？
                   </div>
                   <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto">
-                    <Button variant="outline" className="px-4 py-3 border-gray-300 hover:bg-blue-50">
-                      沒有在吃
-                    </Button>
-                    <Button variant="outline" className="px-4 py-3 border-gray-300 hover:bg-blue-50">
-                      想到才吃
-                    </Button>
-                    <Button variant="outline" className="px-4 py-3 border-gray-300 hover:bg-blue-50">
-                      會吃但申請懶惰
-                    </Button>
-                    <Button variant="outline" className="px-4 py-3 border-gray-300 hover:bg-blue-50">
-                      幾乎每天服用
-                    </Button>
+                    {["沒有在吃", "想到才吃", "會吃但申請懶惰", "幾乎每天服用"].map((freq) => (
+                      <Button 
+                        key={freq}
+                        variant={supplementFrequency === freq ? "default" : "outline"} 
+                        className="px-4 py-3"
+                        onClick={() => setSupplementFrequency(freq)}
+                      >
+                        {freq}
+                      </Button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -114,7 +124,8 @@ const QuestionnaireStart = () => {
               <div className="pt-8">
                 <Button
                   onClick={handleStart}
-                  className="bg-green-600 hover:bg-green-700 text-white px-12 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+                  disabled={!isFormComplete}
+                  className="bg-green-600 hover:bg-green-700 disabled:bg-gray-300 text-white px-12 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
                 >
                   <ClipboardList className="w-6 h-6 mr-3" />
                   開始問卷調查

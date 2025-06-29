@@ -6,7 +6,6 @@ import {
   CheckCircle,
   Brain,
   Pill,
-  ShoppingCart,
   Sparkles,
   Users,
   Shield,
@@ -15,6 +14,7 @@ import {
   Star
 } from "lucide-react";
 import ChatButton from "@/components/ChatButton";
+import FloatingCartButton from "@/components/FloatingCartButton";
 
 const Dashboard = () => {
   const handleLogout = () => {
@@ -42,11 +42,6 @@ const Dashboard = () => {
                 </Button>
               </Link>
               <Link to="/nutrition" className="text-blue-600 hover:text-blue-800 font-medium">免費評估</Link>
-              <Link to="/cart">
-                <Button variant="ghost" size="sm">
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                </Button>
-              </Link>
               <Link to="/login">
                 <Button variant="ghost" size="sm">
                   <LogOut className="w-4 h-4 mr-2" />
@@ -72,8 +67,8 @@ const Dashboard = () => {
               只需 3 分鐘，完成健康問卷，獲得專屬營養建議
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-16 py-6 text-2xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
-                <Star className="w-8 h-8 mr-4" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-20 py-8 text-3xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-10 h-10 mr-6" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
@@ -132,7 +127,7 @@ const Dashboard = () => {
               <Card className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
                   <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <ShoppingCart className="w-8 h-8 text-white" />
+                    <Pill className="w-8 h-8 text-white" />
                   </div>
                   <CardTitle className="text-lg">線上選購或藥局諮詢</CardTitle>
                 </CardHeader>
@@ -266,8 +261,8 @@ const Dashboard = () => {
               立即進行免費評估，讓 AI 為您推薦最適合的保健方案
             </p>
             <Link to="/nutrition">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-16 py-6 text-2xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
-                <Star className="w-8 h-8 mr-4" fill="currentColor" />
+              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-20 py-8 text-3xl font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <Star className="w-10 h-10 mr-6" fill="currentColor" />
                 立即免費評估 →
               </Button>
             </Link>
@@ -277,6 +272,9 @@ const Dashboard = () => {
 
       {/* 聊天按鈕 */}
       <ChatButton />
+      
+      {/* 購物車按鈕 */}
+      <FloatingCartButton />
     </div>
   );
 };
